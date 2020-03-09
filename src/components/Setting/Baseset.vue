@@ -59,8 +59,9 @@
 
 
 
-    <el-tab-pane label="佣金发放时间" name="brokerage_type">
-      <el-switch v-model="brokerage_type" active-value="1" inactive-value="2" active-text="成团发放" inactive-text="核销发放" @change="schange">
+    <el-tab-pane label="佣金发放时间" name='brokerage_type' >
+      <el-switch v-model="brokerage"  active-text="成团发放" inactive-text="核销发放" @change="schange">
+        <!-- 1 成团 2 核销 -->
       </el-switch>
     </el-tab-pane>
 
@@ -120,7 +121,8 @@
       upurl:qiniu.upurl,
 
       loginbg:'../static/images/default2.png',
-      brokerage_type:'1',
+      brokerage_type:2,
+      brokerage:'',
 
       sharebg:"../static/images/default2.png",
 
@@ -149,9 +151,12 @@
 
     schange(val){
       console.log(val)
+      console.log('dsdfsafas')
+      
       var allParams={
         brokerage_type:this.brokerage_type==1?2:1
       }
+      console.log(allParams);
       baseset(allParams).then((res) => {
         if (res.msg === "ok") {
          this.getconfig()
@@ -283,16 +288,17 @@
 
     getconfig(){
       var allParams=''
+      
       baseget(allParams).then((res) => {
         if (res.msg === "ok") {
-
+console.log(res)
           this.sharepic=res.data.sharepic
           this.sharetitle=res.data.sharetitle
 
 
           this.loginbg=res.data.loginbg
           this.brokerage_type=res.data.brokerage_type
-
+this.brokerage=this.brokerage_type==1?true:false;
           this.sharebg=res.data.sharebg
 
           this.hongbao.minprice=res.data.minprice
@@ -312,6 +318,8 @@
 
   mounted: function(){
     this.getconfig()
+    this.brokerage = this.brokerage_type==1?true:false;
+    console.log(this.brokerage)
   }
 }
 </script>
