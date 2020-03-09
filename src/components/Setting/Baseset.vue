@@ -150,7 +150,7 @@
     schange(val){
       console.log(val)
       var allParams={
-        brokerage_type:this.brokerage_type
+        brokerage_type:this.brokerage_type==1?2:1
       }
       baseset(allParams).then((res) => {
         if (res.msg === "ok") {
