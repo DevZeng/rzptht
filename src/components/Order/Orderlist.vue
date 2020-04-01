@@ -82,8 +82,8 @@
           <el-tag type="success" v-if="scope.row.state==3 && scope.row.delivery==1">已发货</el-tag>
 
           <el-tag type="warning" v-if="scope.row.state==4">已完成</el-tag>
-          <el-tag type="danger" v-if="scope.row.state==5">拼团失败</el-tag>
-          <el-tag type="danger" v-if="scope.row.state==6">拼团失败</el-tag>
+          <el-tag type="danger" v-if="scope.row.state==5">等待退款</el-tag>
+          <el-tag type="danger" v-if="scope.row.state==6">已退款</el-tag>
         </template>
       </el-table-column>
 
@@ -108,7 +108,7 @@
 
         <el-button type="success" size="mini" @click="handleSend(scope.row)" v-if="scope.row.state==3 && scope.row.address && scope.row.delivery!=1">发货</el-button>
 
-        <el-button type="danger" size="mini" @click="handleTui(scope.row)" v-if="scope.row.state!=1">退款</el-button>
+        <el-button type="danger" size="mini" @click="handleTui(scope.row)" v-if="scope.row.state!=1&&scope.row.state<5">退款</el-button>
       </template>
     </el-table-column>
 

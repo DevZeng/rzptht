@@ -52,11 +52,11 @@
       </el-form-item>
 
       <el-form-item label="不成团时：" prop="refund">
-       <el-switch v-model="newone.refund" active-value="1" inactive-value="2" active-text="可退款" inactive-text="不可退款"></el-switch>
+       <el-switch v-model="is_refund"  active-text="退款" inactive-text="不退款"></el-switch>
      </el-form-item>
 
      <el-form-item label="是否免单：" prop="free">
-       <el-switch v-model="newone.free" active-value="1" inactive-value="2" active-text="免单" inactive-text="不免单"></el-switch>
+       <el-switch v-model="is_free"  active-text="免单" inactive-text="不免单"></el-switch>
      </el-form-item>
 
 
@@ -146,7 +146,8 @@
         token:qiniu.token,
       },
       upurl:qiniu.upurl,
-
+      is_free:true,
+      is_refund:true,
       typeArr:[],
       type_id:'',
 
@@ -275,7 +276,8 @@ methods:{
 
       this.type_id=res.data.type_id;
       this.categories=res.data.categories;
-
+this.is_free = this.newone.free==1?true:false;
+  this.is_refund = this.newone.refund==1?true:false;
       var images=[];
       for(var i=0;i<res.data.pictures.length;i++){
         images.push({
@@ -443,8 +445,8 @@ methods:{
           categories:this.categories,
           start:this.newone.start,
           end:this.newone.end,
-          refund:this.newone.refund,
-          free:this.newone.free,
+          refund:this.is_refund?1:2,
+          free:this.is_free?1:2,
           type_id:this.type_id,
           delivery:this.newone.delivery
         };
@@ -507,6 +509,8 @@ computed: {
 mounted: function () {
   this.gettype()
   this.checkid()
+  this.is_free = this.newone.free==1?true:false;
+  this.is_refund = this.newone.refund==1?true:false;
 }
 }
 </script>
