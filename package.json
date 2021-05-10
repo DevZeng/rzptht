@@ -15,7 +15,7 @@
     "babel-preset-es2015": "^6.24.1",
     "echarts": "^3.7.1",
     "file-saver": "^1.3.8",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mint-ui": "^2.2.13",
     "mockjs": "^1.0.1-beta3",
     "npm": "^6.10.1",
