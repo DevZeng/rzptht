@@ -24,7 +24,7 @@
     "vue-axios": "^2.1.1",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^2.7.0",
-    "xlsx": "^0.13.3"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
